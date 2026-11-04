@@ -75,7 +75,7 @@ public class Order {
     }
 
     public void addFilledQuantity(BigDecimal amount) {
-        this.filledQuantity.add(amount);
+        this.filledQuantity = this.filledQuantity.add(amount);
         if (this.filledQuantity.compareTo(this.quantity) == 0 ) {
             this.status = OrderStatus.FILLED;
         }
