@@ -11,20 +11,22 @@ public class Order {
     private OrderStatus status;
     private BigDecimal price;
     private BigDecimal quantity;
+    private BigDecimal filledQuantity;
     private LocalDateTime dateTime;
 
 
     public Order(Long userId, Long id, String ticker,
-                 OrderSide side, OrderType type, OrderStatus status, BigDecimal price,
-                 BigDecimal quantity, LocalDateTime dateTime) {
+                 OrderSide side, OrderType type, OrderStatus status, String price,
+                 String quantity, LocalDateTime dateTime) {
         this.userId = userId;
         this.id = id;
         this.ticker = ticker;
         this.side = side;
         this.type = type;
         this.status = status;
-        this.price = price;
-        this.quantity = quantity;
+        this.price = new BigDecimal(price);
+        this.quantity = new BigDecimal(quantity);
+        this.filledQuantity = BigDecimal.ZERO;
         this.dateTime = dateTime;
     }
 
