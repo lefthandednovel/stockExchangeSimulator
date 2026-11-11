@@ -18,9 +18,10 @@ public class MatchingEngine {
                 BigDecimal tradeQuantity = sellOrder.getRemainingQuantity()
                         .min(buyOrder.getRemainingQuantity());
                 BigDecimal tradePrice = calcTradePrice(sellOrder, buyOrder);
-                Trade trade = new Trade(counter, orderBook.getTicker(), sellOrder.getPrice(),
+                Trade trade = new Trade(counter, orderBook.getTicker(), tradePrice,
                         tradeQuantity, buyOrder.getId(), sellOrder.getId(), LocalDateTime.now());
                 trades.add(trade);
+                counter++;
                 sellOrder.addFilledQuantity(tradeQuantity);
                 buyOrder.addFilledQuantity(tradeQuantity);
                 if (sellOrder.getRemainingQuantity().compareTo(BigDecimal.ZERO)!=0) {
