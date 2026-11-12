@@ -1,3 +1,5 @@
+package com.yourname.exchange;
+
 import java.math.BigDecimal;
 
 public class Stock {

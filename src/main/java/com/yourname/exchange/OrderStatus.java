@@ -1,3 +1,5 @@
+package com.yourname.exchange;
+
 public enum OrderStatus {
     OPEN, PARTIALLY_FILLED, FILLED, CANCELLED, REJECTED
 }

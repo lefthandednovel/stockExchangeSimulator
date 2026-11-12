@@ -1,3 +1,5 @@
+package com.yourname.exchange;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
