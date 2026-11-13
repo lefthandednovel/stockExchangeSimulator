@@ -10,13 +10,24 @@ public class MatchingEngineTest {
     @Test
     public void testSimpleFullMatch() {
         OrderBook book = new OrderBook("AAPL");
+
+        try {
+
         Order buyOrder = new Order(1L, 1L, "AAPL", OrderSide.BUY, OrderType.LIMIT,
                  "100", "10", LocalDateTime.now());
         Order sellOrder = new Order(2L, 2L, "AAPL", OrderSide.SELL, OrderType.LIMIT,
                 "100", "10", LocalDateTime.now().plusSeconds(1));
-
         book.addOrder(buyOrder);
         book.addOrder(sellOrder);
+
+        }
+
+
+        catch (InvalidOrderException e) {
+            System.out.println("Ошибка: " + e.getMessage());
+        }
+
+
 
         MatchingEngine engine = new MatchingEngine();
 
