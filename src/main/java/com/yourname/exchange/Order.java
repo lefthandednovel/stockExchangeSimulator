@@ -19,14 +19,25 @@ public class Order {
 
     public Order(Long userId, Long id, String ticker,
                  OrderSide side, OrderType type, String price,
-                 String quantity, LocalDateTime dateTime) {
+                 String quantity, LocalDateTime dateTime) throws InvalidOrderException {
+
+        BigDecimal BDPrice = new BigDecimal(price);
+        if (BDPrice.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidOrderException("Отрицательная цена");
+        }
+
+        BigDecimal BDQuantity = new BigDecimal(quantity);
+        if (BDQuantity.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidOrderException("Отрицательное количество");
+        }
+
         this.userId = userId;
         this.id = id;
         this.ticker = ticker;
         this.side = side;
         this.type = type;
         this.status = OrderStatus.OPEN;
-        this.price = new BigDecimal(price);
+        this.price = BDPrice;
         this.quantity = new BigDecimal(quantity);
         this.filledQuantity = BigDecimal.ZERO;
         this.dateTime = dateTime;
